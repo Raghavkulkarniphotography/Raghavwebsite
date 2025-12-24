@@ -1,225 +1,75 @@
-/* ================= RESET & BASE ================= */
-* { margin: 0; padding: 0; box-sizing: border-box; }
+/* ================= FILTERING LOGIC ================= */
+filterSelection("all")
 
-body {
-    background-color: #050505; 
-    color: #e0e0e0;
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
+function filterSelection(c) {
+  var x, i;
+  x = document.getElementsByClassName("gallery-item");
+  if (c == "all") c = "";
+  for (i = 0; i < x.length; i++) {
+    w3RemoveClass(x[i], "show");
+    if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+  }
 }
 
-html { scroll-behavior: smooth; }
-
-/* ================= NAVIGATION ================= */
-nav {
-    position: fixed;
-    top: 25px; 
-    left: 50%;
-    transform: translateX(-50%);
-    width: 95%; 
-    max-width: 1300px;
-    padding: 10px 40px; 
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(20, 20, 20, 0.9); /* Darker for better visibility */
-    backdrop-filter: blur(20px); 
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 60px; 
-    z-index: 1000;
+function w3AddClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    if (arr1.indexOf(arr2[i]) == -1) {element.className += " " + arr2[i];}
+  }
 }
 
-.logo img {
-    height: 60px;
-    width: auto;
-    display: block;
-}
-
-.links a {
-    color: #bbb;
-    text-decoration: none;
-    margin-left: 20px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    transition: 0.3s ease;
-}
-.links a:hover { color: #fff; }
-
-/* ================= HERO SECTION ================= */
-.hero {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #050505 70%);
-    padding: 0 20px; /* Prevents text hitting edges on mobile */
-}
-
-.hero h1 {
-    font-size: 5rem; 
-    font-weight: 800;
-    letter-spacing: -2px;
-    text-transform: uppercase;
-    background: linear-gradient(to right, #ffffff, #999999);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    margin-bottom: 20px;
-}
-
-.hero p {
-    font-size: 1.1rem;
-    color: #888;
-    letter-spacing: 3px; 
-    text-transform: uppercase;
-}
-
-/* Animations */
-.fade-in { opacity: 0; transform: translateY(30px); animation: fadeInUp 1.2s cubic-bezier(0.2, 1, 0.3, 1) forwards; }
-.delay { animation-delay: 0.2s; }
-@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-
-/* ================= PORTFOLIO (MASONRY) ================= */
-.portfolio { padding: 150px 4%; }
-.section-title { text-align: center; font-size: 3rem; margin-bottom: 50px; color: #fff; }
-
-.filters { display: flex; justify-content: center; gap: 10px; margin-bottom: 60px; flex-wrap: wrap; }
-
-.filter-btn {
-    background: transparent;
-    border: 1px solid #333;
-    color: #888;
-    padding: 8px 24px;
-    border-radius: 100px;
-    cursor: pointer;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
-}
-.filter-btn:hover, .filter-btn.active { 
-    background: #fff; 
-    color: #000; 
-    border-color: #fff;
-}
-
-/* Masonry Grid */
-.gallery-grid {
-    column-count: 3; 
-    column-gap: 20px;
-}
-
-.gallery-item {
-    break-inside: avoid; 
-    margin-bottom: 20px;
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    background: #111;
-    cursor: pointer; 
-}
-
-.gallery-item img {
-    width: 100%;
-    height: auto;
-    display: block;
-    transition: transform 0.6s ease;
-}
-
-.gallery-item:hover img { transform: scale(1.05); }
-
-/* Filtering */
-.gallery-item { display: none; }
-.show { display: block; }
-
-/* ================= LIGHTBOX (FIXED) ================= */
-.lightbox {
-    display: none; 
-    position: fixed;
-    z-index: 9999; /* Super high so it stays on top */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.95);
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
-
-.lightbox img {
-    max-width: 100%;
-    max-height: 90vh; 
-    border-radius: 5px;
-    box-shadow: 0 0 50px rgba(0,0,0,0.5);
-    object-fit: contain;
-}
-
-.close-btn {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    color: #fff;
-    font-size: 50px;
-    font-weight: bold;
-    cursor: pointer;
-    z-index: 10000;
-}
-
-/* ================= ABOUT & CONTACT ================= */
-.about { padding: 100px 8%; background: #080808; }
-.about-container { display: flex; align-items: center; justify-content: center; gap: 80px; flex-wrap: wrap; }
-.profile-frame { width: 350px; height: 450px; border-radius: 200px 200px 20px 20px; overflow: hidden; }
-.profile-pic { width: 100%; height: 100%; object-fit: cover; filter: grayscale(100%); transition: 0.5s; }
-.profile-frame:hover .profile-pic { filter: grayscale(0%); transform: scale(1.03); }
-
-.about-text h2 { font-size: 3rem; margin-bottom: 20px; }
-.about-text p { color: #999; margin-bottom: 30px; font-size: 1rem; }
-.stats { display: flex; gap: 50px; }
-.stat-box h3 { font-size: 2rem; color: #fff; }
-
-.contact { padding: 150px 20px; text-align: center; }
-.cta-button {
-    display: inline-block; padding: 20px 50px;
-    background: #fff; color: #000; border-radius: 100px;
-    text-decoration: none; font-weight: 700; transition: 0.3s;
-}
-.cta-button:hover { background: #ddd; transform: scale(1.05); }
-
-footer { text-align: center; padding: 40px; color: #333; border-top: 1px solid #111; }
-
-/* ================= MOBILE OPTIMIZATION (CRITICAL) ================= */
-@media (max-width: 768px) {
-    /* Stack navigation vertically */
-    nav {
-        flex-direction: column;
-        padding: 15px;
-        border-radius: 30px;
-        width: 90%;
-        top: 15px;
+function w3RemoveClass(element, name) {
+  var i, arr1, arr2;
+  arr1 = element.className.split(" ");
+  arr2 = name.split(" ");
+  for (i = 0; i < arr2.length; i++) {
+    while (arr1.indexOf(arr2[i]) > -1) {
+      arr1.splice(arr1.indexOf(arr2[i]), 1);     
     }
-    
-    .logo img { height: 50px; margin-bottom: 10px; }
-    
-    .links { 
-        display: flex; 
-        flex-wrap: wrap; 
-        justify-content: center; 
-        gap: 15px;
-    }
-    
-    .links a { margin: 0; font-size: 0.8rem; }
-
-    /* Shrink Hero Text */
-    .hero h1 { font-size: 2.8rem; }
-    .hero p { font-size: 0.8rem; letter-spacing: 1px; }
-
-    /* 1 Column Gallery for Phones */
-    .gallery-grid { column-count: 1; }
-    
-    /* Adjust spacing */
-    .portfolio { padding: 150px 5% 50px 5%; }
-    .about-container { flex-direction: column; text-align: center; }
-    .profile-frame { width: 100%; max-width: 300px; height: 350px; }
-    .stats { justify-content: center; }
+  }
+  element.className = arr1.join(" ");
 }
+
+// Active Button Logic
+var btnContainer = document.getElementsByClassName("filters")[0];
+var btns = btnContainer.getElementsByClassName("filter-btn");
+for (var i = 0; i < btns.length; i++) {
+  btns[i].addEventListener("click", function(){
+    var current = document.getElementsByClassName("active");
+    if(current.length > 0) {
+        current[0].className = current[0].className.replace(" active", "");
+    }
+    this.className += " active";
+  });
+}
+
+/* ================= LIGHTBOX LOGIC (FAIL-SAFE) ================= */
+// We use "Event Delegation" here. Instead of adding a listener to every image,
+// we listen to the grid container. If you click ANYTHING inside the grid
+// that happens to be an image, the lightbox opens.
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const grid = document.getElementById('gallery-grid');
+
+grid.addEventListener('click', function(e) {
+    // Check if the clicked element is an Image
+    if(e.target.tagName === 'IMG') {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = e.target.src;
+    }
+});
+
+// Close Lightbox
+function closeLightbox() {
+    lightbox.style.display = 'none';
+}
+
+// Close if clicked outside the image
+lightbox.addEventListener('click', function(e) {
+    if (e.target === lightbox) {
+        lightbox.style.display = 'none';
+    }
+});
