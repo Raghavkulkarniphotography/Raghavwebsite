@@ -1,3 +1,4 @@
+/* ================= FILTERING LOGIC ================= */
 filterSelection("all")
 
 function filterSelection(c) {
@@ -31,7 +32,7 @@ function w3RemoveClass(element, name) {
   element.className = arr1.join(" ");
 }
 
-// Add active class to the current button (highlight it)
+// Active Button State
 var btnContainer = document.getElementsByClassName("filters")[0];
 var btns = btnContainer.getElementsByClassName("filter-btn");
 for (var i = 0; i < btns.length; i++) {
@@ -40,4 +41,20 @@ for (var i = 0; i < btns.length; i++) {
     current[0].className = current[0].className.replace(" active", "");
     this.className += " active";
   });
+}
+
+/* ================= LIGHTBOX LOGIC ================= */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightbox-img');
+const images = document.querySelectorAll('.gallery-item img');
+
+images.forEach(image => {
+    image.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = image.src;
+    });
+});
+
+function closeLightbox() {
+    lightbox.style.display = 'none';
 }
