@@ -5,12 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Raghav Kulkarni | Visual Artist</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <nav>
-        <div class="logo">RAGHAV KULKARNI</div>
+        <div class="logo">
+            <img src="images/logo.png" alt="Raghav Kulkarni">
+        </div>
         <div class="links">
             <a href="#home">Home</a>
             <a href="#work">Work</a>
@@ -27,45 +29,68 @@
     </section>
 
     <section id="work" class="portfolio">
-        <h2>Selected Works</h2>
+        <h2 class="section-title">Selected Works</h2>
         
         <div class="filters">
             <button class="filter-btn active" onclick="filterSelection('all')">All</button>
             <button class="filter-btn" onclick="filterSelection('product')">Product</button>
             <button class="filter-btn" onclick="filterSelection('corporate')">Corporate</button>
             <button class="filter-btn" onclick="filterSelection('interior')">Interior</button>
-            </div>
+        </div>
 
         <div class="gallery-grid">
+            
             <div class="gallery-item product">
-                <div class="placeholder">Product Shot 1</div> 
+                <img src="images/product1.jpg" alt="Minimalist Product Shot">
             </div>
-            <div class="gallery-item corporate">
-                <div class="placeholder">Corporate Shot 1</div>
-            </div>
-            <div class="gallery-item interior">
-                <div class="placeholder">Interior Shot 1</div>
+            <div class="gallery-item product">
+                <img src="images/product2.jpg" alt="Luxury Watch Photography">
             </div>
              <div class="gallery-item product">
-                <div class="placeholder">Product Shot 2</div>
+                <img src="images/product3.jpg" alt="Creative Lighting">
             </div>
+             <div class="gallery-item corporate">
+                <div class="placeholder-text">Corporate Campaign 1</div>
+            </div>
+            
+            <div class="gallery-item interior">
+                <div class="placeholder-text">Interior Architecture 1</div>
+            </div>
+
         </div>
     </section>
 
     <section id="about" class="about">
-        <div class="about-text">
-            <h2>The Operator.</h2>
-            <p>I am Raghav Kulkarni. I don't just take photos; I construct visual narratives. Based in Pune, specializing in high-contrast, minimalist aesthetics for brands that demand attention.</p>
+        <div class="about-container">
+            <div class="profile-frame">
+                <img src="images/profile.jpg" alt="Raghav Kulkarni" class="profile-pic">
+            </div>
+            
+            <div class="about-text">
+                <h2>The Operator.</h2>
+                <p>I am Raghav Kulkarni. I don't just capture moments; I engineer visual narratives. Based in Pune, I specialize in high-contrast, minimalist aesthetics for brands that refuse to blend in.</p>
+                <div class="stats">
+                    <div class="stat-box">
+                        <h3>2+</h3>
+                        <span>Years Exp</span>
+                    </div>
+                    <div class="stat-box">
+                        <h3>Pune</h3>
+                        <span>Based</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <section id="contact" class="contact">
-        <h2>Let's Create.</h2>
+        <h2>Ready to Create?</h2>
+        <p>Let's discuss your next campaign.</p>
         <a href="mailto:raghavkulkarniphotography@gmail.com" class="cta-button">Email Me</a>
     </section>
 
     <footer>
-        <p>&copy; 2025 Raghav Kulkarni. Pune, India.</p>
+        <p>&copy; 2025 Raghav Kulkarni. All Rights Reserved.</p>
     </footer>
 
     <script src="script.js"></script>
