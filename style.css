@@ -120,13 +120,17 @@ nav {
     column-gap: 20px;
 }
 
-.gallery-item {
+gallery-item {
     break-inside: avoid; 
     margin-bottom: 20px;
     border-radius: 12px;
     overflow: hidden;
     position: relative;
-    background: #111;
+    
+    /* SMOOTHNESS FIX: Gives the box a shape/color before image loads */
+    background: #1a1a1a; 
+    min-height: 200px; 
+    
     cursor: pointer; 
 }
 
