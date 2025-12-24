@@ -135,6 +135,11 @@ nav {
     height: auto;
     display: block;
     transition: transform 0.6s ease;
+    
+    /* SPEED BOOST: This forces the GPU to handle the image rendering */
+    will-change: transform;
+    backface-visibility: hidden;
+    transform: translateZ(0);
 }
 
 .gallery-item:hover img { transform: scale(1.05); }
